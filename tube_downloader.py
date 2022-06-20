@@ -31,7 +31,7 @@ def extract_frames(source_path='videos',
 
     for file in source_files:
         video = VideoCapture(join(source_path, file))
-        file_destination = join(dest_path, file)
+        file_destination = join(dest_path, file[:file.rfind('.')])
         ret, frame = video.read()
         while(video.isOpened() and ret):
             timestamp = video.get(cv2.CAP_PROP_POS_MSEC)
