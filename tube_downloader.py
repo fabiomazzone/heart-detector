@@ -2,7 +2,9 @@ from tqdm import tqdm
 from pytube import YouTube
 
 videos = ['https://youtu.be/HorTS-WNNBk', 'https://youtu.be/Mdx388nfzCY',
-          'https://youtu.be/51aaWhfnzNQ', 'https://youtu.be/SS4ntXD10r8']
+          'https://youtu.be/51aaWhfnzNQ', 'https://youtu.be/SS4ntXD10r8',
+          'https://youtu.be/USjc1RwdiPY'
+          ]
 
 
 def download_videos(video_urls, path='videos'):
