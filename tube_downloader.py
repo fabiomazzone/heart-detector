@@ -45,6 +45,37 @@ def extract_frames(source_path='videos',
         video.release()
 
 
+def play_video(src_file, image_transform=lambda image: image):
+    video = VideoCapture(src_file)
+
+    while(video.isOpened()):
+        ret, frame = video.read()
+        current_frame_index = video.get(cv2.CAP_PROP_POS_FRAMES)
+
+        if(ret):
+            cv2.imshow('video', frame)
+            cv2.imshow('transform', image_transform(frame))
+
+            if(key := cv2.waitKey(25) & 0xFF):
+                if(key == ord('q')):
+                    break
+                if(key == ord('f')):
+                    video.set(
+                        cv2.CAP_PROP_POS_FRAMES, current_frame_index + 20)
+                if(key == ord('r')):
+                    video.set(
+                        cv2.CAP_PROP_POS_FRAMES, current_frame_index - 20)
+                if(key == ord(' ')):
+                    print(video.get(cv2.CAP_PROP_POS_FRAMES))
+                    cv2.waitKey(0)
+                if(key == ord('l')):
+                    print(video.get(cv2.CAP_PROP_POS_FRAMES))
+        else:
+            break
+
+
 if __name__ == "__main__":
     # download_videos(videos)
-    extract_frames()
+    # extract_frames()
+    play_video(
+        'videos/How to make a valentine easy for kids  Flower - Heart.mp4')
